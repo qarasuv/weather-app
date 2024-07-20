@@ -29,5 +29,6 @@
    ```bash
    git clone https://github.com/qarasuv/weather-app.git
    cd weather-app
-   docker build -t weather-app .
-   docker run -d -p 8000:8000 weather-app
+   git checkout dev
+   sudo docker build -t weather-app .
+   sudo docker run -d -p 8000:8000 weather-app

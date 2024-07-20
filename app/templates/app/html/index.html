@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прогноз погоды</title>
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+</head>
+<body>
+    <h1>
+        <a href="{% url 'index' %}" style="text-decoration: none; color: inherit;">Прогноз погоды</a>
+    </h1>
+
+    <form id="weatherForm" action="{% url 'get-weather' %}" method="post">
+        {% csrf_token %}
+        <input type="text" id="cityInput" name="city" placeholder="Введи название города" autocomplete="off" required>
+        <div id="suggestions" class="autocomplete-suggestions"></div>
+        <input type="hidden" id="stateInput" name="state">
+        <input type="hidden" id="countryInput" name="country">
+        <input type="hidden" id="latInput" name="lat">
+        <input type="hidden" id="lonInput" name="lon">
+        <input type="hidden" id="selectionMade" name="selectionMade" value="false"> <!-- Added field -->
+        <input type="submit" value="Искать">
+    </form>
+
+    {% if weather %}
+    <div class="weather-info">
+        <h2>Погода в {{ name }}</h2>
+        <p><strong>Температура:</strong> {{ temp }} °C</p>
+        <p><strong>Чувствуется как:</strong> {{ feels_like }} °C</p>
+        <p><strong>Влажность:</strong> {{ humidity }} %</p>
+        <p><strong>Скорость ветра:</strong> {{ wind }} м/с</p>
+        <p><strong>Погода:</strong> {{ weather }}</p>
+    </div>
+    {% endif %}
+
+    {% if error %}
+    <div class="weather-info">
+        <h2>{{ error }}</h2>
+    </div>
+    {% endif %}
+
+    <script id="config" data-api-key="{{ api_key }}"></script>
+    <script src="{% static 'app/js/script.js' %}"></script>
+</body>
+</html>

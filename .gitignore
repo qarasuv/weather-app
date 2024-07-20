@@ -1,0 +1,11 @@
+env/
+.pylintrc
+__pycache__/
+cache/
+.vscode
+.idea
+.dockerignore
+db.sqlite3
+media/
+setenv.sh
+.DS_Store

@@ -21,6 +21,7 @@
 
 ### Требования
 
+
 - Docker установлен на вашей машине.
 
 ## Установка и запуск
@@ -31,5 +32,10 @@
    git clone https://github.com/qarasuv/weather-app.git
    cd weather-app
    git checkout dev
-   sudo docker build -t weather-app .
-   sudo docker run -d -p 8000:8000 weather-app
+   python3 -m venv env
+   source env/bin/activate
+   pip install -r requirements.txt
+   export ENV API_KEY=12933cb6ced2eea2c92636a5269a7d23
+   python3 manage.py runserver
+   ```
+<img width="1280" alt="Screenshot 2024-10-23 at 17 51 37" src="https://github.com/user-attachments/assets/e4a4f7c7-acb1-48b0-b405-379eb7c4837e">
